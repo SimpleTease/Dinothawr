@@ -228,7 +228,7 @@ static void load_game(const string& path)
       return input_state_cb(0, RETRO_DEVICE_JOYPAD, 0, btn);
    };
 
-   game = make_unique<GameManager>(path, input_cb,
+   game = Blit::Utils::make_unique<GameManager>(path, input_cb,
          [&](const void* data, unsigned width, unsigned height, size_t pitch) {
             if (present_frame)
                video_cb(data, width, height, pitch);
