@@ -345,8 +345,12 @@ CORE_DIR := .
 include Makefile.common
 
 OBJECTS  := $(SOURCES_CXX:.cpp=.o) $(SOURCES_C:.c=.o) $(SOURCES_ASM:.S=.o)
-CXXFLAGS += -DWANT_ZLIB -ffast-math -Wall $(fpic) -I. -DOV_EXCLUDE_STATIC_CALLBACKS $(INCFLAGS)
+CXXFLAGS += -DWANT_ZLIB -ffast-math $(fpic) -I. -DOV_EXCLUDE_STATIC_CALLBACKS $(INCFLAGS)
 CFLAGS   += -DWANT_ZLIB -ffast-math $(fpic) $(INCFLAGS)
+
+ifeq (,$(findstring msvc,$(platform)))
+	CXXFLAGS += -Wall
+endif
 
 LIBS += -lm -lpthread
 
