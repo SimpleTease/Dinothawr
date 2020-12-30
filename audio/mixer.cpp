@@ -18,8 +18,8 @@ namespace Audio
 {
    Mixer::Mixer() : master_vol(1.0f)
    {
-      m_enabled = make_unique<std::atomic<unsigned>>();
-      m_lock = make_unique<recursive_mutex>();
+      m_enabled = Blit::Utils::make_unique<std::atomic<unsigned>>();
+      m_lock = Blit::Utils::make_unique<recursive_mutex>();
    }
 
    void Mixer::add_stream(shared_ptr<Stream> str)
